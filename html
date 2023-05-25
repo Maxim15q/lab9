@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Телефонная книга</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+        h1 {
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="submit"] {
+            padding: 8px 16px;
+            border: none;
+            background-color: #4CAF50;
+            color:
+            #ffffff;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .clear-button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Телефонная книга</h1>
+        <table>
+            <tr>
+                <th>Имя</th>
+                <th>Номер телефона</th>
+            </tr>
+            {% for contact in contacts %}
+            <tr>
+                <td>{{ contact.name }}</td>
+                <td>{{ contact.phone }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form action="/add" method="post">
+            <input type="text" name="name" placeholder="Имя" required>
+            <input type="text" name="phone" placeholder="Номер телефона" required>
+            <input type="submit" value="Добавить контакт">
+        </form>
+        <form action="/clear" method="post" class="clear-button">
+            <input type="submit" value="Очистить">
+        </form>
+    </div>
+</body>
+</html>
